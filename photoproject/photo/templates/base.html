@@ -34,21 +34,48 @@
     
   </head>
   <body>
-    
+ 
+<!--ページのヘッダー-->    
 <header>
+
+<!--メニューのヘッダー-->
   <div class="collapse bg-dark" id="navbarHeader">
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-md-7 py-4">
-          <h4 class="text-white">About</h4>
-          <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+
+<!--ヘッダーのタイトルと本文-->
+          <h4 class="text-white">お気に入りを見つけよう! </h4>
+          <p class="text-muted">
+            誰でも参加できる写真投稿サイトです。
+            自分で撮影した写真ならなんでもオッケー!
+            でも、カテゴリに属する写真に限ります。
+            コメントも付けてください!
+          </p>
         </div>
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">Contact</h4>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
+            <!--ナビゲーションメニュー-->
+            {% if user.is_authenticated %}
+            <!--ログイン中のメニュー-->
+                <li><a href="{% url 'photo:mypage' %}"
+                    class="text-white">マイページ</a></li>
+                <li><a href="{% url 'accounts:logout' %}"
+                    class="text-white">ログアウト</a></li>
+                <li><a href="{% url 'password_reset' %}"
+                    class="text-white">パスワードのリセット</a></li>
+                <li><a href="mailto:admin@example.com"
+                    class="text-white">Email me</a></li>
+                {% else %}
+            <!--ログイン状態ではない場合のメニュー-->
+                <li><a href="{% url 'accounts:signup' %}"
+                    class="text-white">サインアップ</a></li>
+                <li><a href="{% url 'accounts:login' %}"
+                    class="text-white">ログイン</a></li>
+                <li><a href="mailto:admin@example.com"
+                    class="text-white">Email me</a></li>
+                {% endif %}
           </ul>
         </div>
       </div>
@@ -254,3 +281,8 @@
       
   </body>
 </html>
+
+
+
+
+
