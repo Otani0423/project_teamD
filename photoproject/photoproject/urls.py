@@ -23,3 +23,5 @@ urlpatterns = [
     #photo.urlsへのURLパターン
     path('', include('photo.urls')),
 ]
+
+#check
